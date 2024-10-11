@@ -1,0 +1,44 @@
+# application.yml
+
+server:
+  port: 8080
+spring:
+  profiles:
+    #active: prod
+    #default: dev
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/lil_voca_db?serverTimezone=Asia/Seoul
+    username: admin
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+---
+server:
+  port: 8081
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    hibernate:
+      ddl-auto: create
+---
+server:
+  port: 8082
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    hibernate:
+      ddl-auto: update
