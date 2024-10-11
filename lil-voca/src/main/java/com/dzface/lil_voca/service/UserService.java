@@ -21,8 +21,8 @@ public class UserService {
     }
     public ResponseEntity<String> createUser(UserRequestDTO userRequestDTO) {
         // 중복 조회 로직
-        Optional<User> existingUser = userRepository.findByUserId(userRequestDTO.getUserId());
-        if (existingUser.isPresent()) {
+        Optional<User> isDuplicatedUser = userRepository.findByUserId(userRequestDTO.getUserId());
+        if (isDuplicatedUser.isPresent()) {
             return new ResponseEntity<>("User already exists", HttpStatus.CONFLICT);
         }
 
@@ -51,6 +51,4 @@ public class UserService {
         // 변환된 리스트를 ResponseEntity로 반환
         return new ResponseEntity<>(userResponseDTOList, HttpStatus.OK);
     }
-
-
 }
