@@ -51,4 +51,17 @@ public class UserService {
         // 변환된 리스트를 ResponseEntity로 반환
         return new ResponseEntity<>(userResponseDTOList, HttpStatus.OK);
     }
+    public ResponseEntity<UserResponseDTO> getUserInfo(UserRequestDTO userRequestDTO){
+        Optional<User> user = userRepository.findByUserId(userRequestDTO.getUserId());
+        if(user.isPresent()){
+            UserResponseDTO userResponseDTO = UserResponseDTO.builder()
+                    .userId(user.get().getUserId())
+                    .userPassword(user.get().getUserPassword())
+                    .userNick(user.get().getUserNick())
+                    .build();
+            return ResponseEntity.ok(userResponseDTO);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -27,10 +27,10 @@ public class UserController {
         return userService.createUser(userRequestDTO);
     }
 
-//    @GetMapping("/info")
-//    public ResponseEntity<UserResponseDTO> getUsersInfo(@RequestParam UserRequestDTO dto) {
-//        return userService.getUsersInfo(dto);
-//    }
+    @PostMapping("/info")
+    public ResponseEntity<UserResponseDTO> getUsersInfo(@RequestBody UserRequestDTO dto) {
+        return userService.getUserInfo(dto);
+    }
 
     @GetMapping("/info/all")
     public ResponseEntity<List<UserResponseDTO>> getAllUsersInfo() {

@@ -1,10 +1,15 @@
 package com.dzface.lil_voca.dto;
 
 import com.dzface.lil_voca.entitiy.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserResponseDTO {
     private Long id;
     private String userId;
@@ -16,4 +21,5 @@ public class UserResponseDTO {
         this.userPassword = userPassword;
         this.userNick = userNick;
     }
+
 }
